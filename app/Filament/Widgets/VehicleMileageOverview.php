@@ -27,7 +27,7 @@ class VehicleMileageOverview extends StatsOverviewWidget
 
         foreach($milesPerCar as $car)
         {
-            $stats[] = Stat::make($car->name, $car->miles);
+            $stats[] = Stat::make($car->name, number_format($car->miles));
         }
 
         return $stats;

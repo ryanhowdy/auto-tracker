@@ -33,8 +33,7 @@ class VehicleYearCostOverview extends StatsOverviewWidget
 
         foreach($totals as $i => $total)
         {
-            $stats[] = Stat::make($carName, $total)
-                ->descriptionIcon('heroicon-s-currency-dollar');
+            $stats[] = Stat::make($carName, '$' . number_format($total));
         }
 
         return $stats;
