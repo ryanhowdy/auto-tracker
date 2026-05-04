@@ -18,21 +18,11 @@ class VehicleYearCostOverview extends StatsOverviewWidget
             ->get()
             ->groupBy('vehicle_id');
 
-        $stats  = [];
-        $totals = [];
+        $stats = [];
 
-        foreach($costsByCar as $carId => $costs)
-        {
+        foreach ($costsByCar as $carId => $costs) {
             $carName = $costs[0]->vehicle->name;
-
-            foreach($costs as $i => $cost)
-            {
-                $totals[$i] = isset($totals[$i]) ? $totals[$i] + $cost->total : $cost->total;
-            }
-        }
-
-        foreach($totals as $i => $total)
-        {
+            $total   = $costs->sum('total');
             $stats[] = Stat::make($carName, '$' . number_format($total));
         }
 
